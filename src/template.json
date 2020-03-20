@@ -57,8 +57,8 @@
     "OwnerEmail": "joe.smith@sagebase.org",
     "Project": "Infrastructure",
     "SnapshotGroups": "all",
-    "SourceImage": "ami-07ebfd5b3428b6f4d",
-    "SshUsername": "ubuntu",
+    "SourceImage": "ami-0fc61db8544a617ed",
+    "SshUsername": "ec2-user",
     "VolumeSize": "8"
   }
 }

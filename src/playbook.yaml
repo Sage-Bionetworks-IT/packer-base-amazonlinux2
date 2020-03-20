@@ -2,10 +2,46 @@
   become: yes
 
   tasks:
+    - pause:
+        seconds: 30
+
     - name: install system updates for centos systems
       yum: name=* state=present update_cache=yes
-      when: ansible_distribution == "CentOS"
 
     - name: install system updates for ubuntu systems
-      apt: upgrade=dist update_cache=yes
-      when: ansible_distribution == "Ubuntu"
+      yum: upgrade=dist update_cache=yes
+
+    - name: install packages
+      package:
+        name:
+          - "ntpdate"
+          - "curl"
+          - "python3-pip"
+        state: present
+
+  - name: Prep snap classic
+    shell: "[ -x /snap ] || yum install -y epel-release snapd && systemctl enable --now snapd.socket && ln -s /var/lib/snapd/snap /snap || echo ''"
+    register: snap_installed
+
+  - name: Install awscli and amazon-ssm-agent
+    snap:
+      name:
+        - aws-cli
+        - amazon-ssm-agent
+      classic: yes
+    when: "not snap_installed.stdout"
+
+  - name: Update time
+    shell: "ntpdate -u pool.ntp.org"
+
+  - name: Make python3 the default python
+    shell: "update-alternatives --install /usr/bin/python python /usr/bin/python3 1"
+
+  - name: Make pip3 the default pip
+    shell: "update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1"
+
+  - name: install awsmfa
+    pip:
+      name:
+        - awsmfa==0.2.9
+      executable: pip3
