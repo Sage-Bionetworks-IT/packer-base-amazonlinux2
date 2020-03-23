@@ -23,7 +23,7 @@
 
     - name: Make pip3 the default pip
       alternatives:
-        name: python
+        name: pip
         link: /usr/bin/pip
         path: /usr/bin/pip3
 
