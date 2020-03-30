@@ -21,11 +21,11 @@
     #     link: /usr/bin/python
     #     path: /usr/bin/python3
 
-    - name: Make pip3 the default pip
-      alternatives:
-        name: pip
-        link: /usr/bin/pip
-        path: /usr/bin/pip3
+    # - name: Make pip3 the default pip
+    #   alternatives:
+    #     name: pip
+    #     link: /usr/bin/pip
+    #     path: /usr/bin/pip3
 
     - name: install awsmfa
       pip:
