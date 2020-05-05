@@ -3,7 +3,7 @@ A template for quickly getting a new packer AWS AMI project started.
 
 ## Naming
 **IMPORTANT**: Our naming convention is `packer-<image name>` (i.e. packer-base-ubuntu-bionic).
-Please name your repo accordingly.  This naming convention helps us locate packer repos and
+Please name your repo accordingly. This naming convention helps us locate packer repos and
 their corresponding builds in github and travis.
 
 ## Development
